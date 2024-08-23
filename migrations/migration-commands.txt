@@ -1,0 +1,119 @@
+When generating models with Sequelize CLI, you can specify various data types for your attributes. Here’s a comprehensive list of data types you can use with the `--attributes` flag, including their Sequelize CLI syntax for model generation.
+
+### Example Command
+
+The basic command for generating a model with attributes is:
+
+```bash
+npx sequelize-cli model:generate --name ModelName --attributes attributeName:dataType,anotherAttribute:dataType
+```
+
+### Data Types for Model Generation
+
+Here’s how to specify each data type using Sequelize CLI:
+
+1. **STRING**
+   ```bash
+   npx sequelize-cli model:generate --name Profile --attributes name:string
+   ```
+
+2. **TEXT**
+   ```bash
+   npx sequelize-cli model:generate --name Profile --attributes description:text
+   ```
+
+3. **INTEGER**
+   ```bash
+   npx sequelize-cli model:generate --name Profile --attributes age:integer
+   ```
+
+4. **BIGINT**
+   ```bash
+   npx sequelize-cli model:generate --name Profile --attributes largeNumber:bigint
+   ```
+
+5. **FLOAT**
+   ```bash
+   npx sequelize-cli model:generate --name Profile --attributes price:float
+   ```
+
+6. **DOUBLE**
+   ```bash
+   npx sequelize-cli model:generate --name Profile --attributes measurement:double
+   ```
+
+7. **DECIMAL**
+   ```bash
+   npx sequelize-cli model:generate --name Profile --attributes salary:decimal(10,2)
+   ```
+
+8. **BOOLEAN**
+   ```bash
+   npx sequelize-cli model:generate --name Profile --attributes isActive:boolean
+   ```
+
+9. **DATE**
+   ```bash
+   npx sequelize-cli model:generate --name Profile --attributes birthdate:date
+   ```
+
+10. **DATEONLY**
+    ```bash
+    npx sequelize-cli model:generate --name Profile --attributes birthdate:dateonly
+    ```
+
+11. **TIME**
+    ```bash
+    npx sequelize-cli model:generate --name Profile --attributes appointmentTime:time
+    ```
+
+12. **ARRAY** (PostgreSQL-specific)
+    ```bash
+    npx sequelize-cli model:generate --name Profile --attributes tags:array(string)
+    ```
+
+13. **JSON**
+    ```bash
+    npx sequelize-cli model:generate --name Profile --attributes settings:json
+    ```
+
+14. **UUID**
+    ```bash
+    npx sequelize-cli model:generate --name Profile --attributes uuid:uuid
+    ```
+
+15. **BLOB**
+    ```bash
+    npx sequelize-cli model:generate --name Profile --attributes image:blob
+    ```
+
+16. **ENUM**
+    ```bash
+    npx sequelize-cli model:generate --name Profile --attributes status:enum(active,inactive,pending)
+    ```
+
+17. **GEOMETRY** (PostgreSQL-specific)
+    ```bash
+    npx sequelize-cli model:generate --name Profile --attributes location:geometry(POINT)
+    ```
+
+### Examples with Multiple Attributes
+
+Here are some example commands using multiple data types:
+
+1. **Basic Example**
+   ```bash
+   npx sequelize-cli model:generate --name Profile --attributes name:string,age:integer,isActive:boolean
+   ```
+
+2. **Advanced Example**
+   ```bash
+   npx sequelize-cli model:generate --name Profile --attributes description:text,salary:decimal(10,2),tags:array(string),settings:json
+   ```
+
+### Summary
+
+- **Sequelize CLI Data Types**: Use data types like `string`, `text`, `integer`, `boolean`, etc., with the `--attributes` flag.
+- **Advanced Types**: For PostgreSQL-specific data types or more complex types, you can specify them with additional options (e.g., `array(string)`, `json`).
+
+This should cover the range of data types you can use when generating models with Sequelize CLI.

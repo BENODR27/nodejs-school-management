@@ -1,0 +1,245 @@
+Sequelize supports a variety of data types for defining model attributes. Here’s a comprehensive list of Sequelize data types along with brief explanations and example usage:
+
+### 1. **STRING**
+- **Description**: For textual data.
+- **Example**:
+  ```javascript
+  name: {
+    type: DataTypes.STRING,
+    allowNull: false
+  }
+  ```
+
+### 2. **TEXT**
+- **Description**: For longer text data. Different sizes (e.g., `TEXT`, `MEDIUMTEXT`, `LONGTEXT`).
+- **Example**:
+  ```javascript
+  description: {
+    type: DataTypes.TEXT,
+    allowNull: true
+  }
+  ```
+
+### 3. **INTEGER**
+- **Description**: For integer numbers.
+- **Example**:
+  ```javascript
+  age: {
+    type: DataTypes.INTEGER,
+    allowNull: false
+  }
+  ```
+
+### 4. **BIGINT**
+- **Description**: For very large integer numbers.
+- **Example**:
+  ```javascript
+  largeNumber: {
+    type: DataTypes.BIGINT,
+    allowNull: false
+  }
+  ```
+
+### 5. **FLOAT**
+- **Description**: For floating-point numbers.
+- **Example**:
+  ```javascript
+  price: {
+    type: DataTypes.FLOAT,
+    allowNull: false
+  }
+  ```
+
+### 6. **DOUBLE**
+- **Description**: For double-precision floating-point numbers.
+- **Example**:
+  ```javascript
+  measurement: {
+    type: DataTypes.DOUBLE,
+    allowNull: true
+  }
+  ```
+
+### 7. **DECIMAL**
+- **Description**: For fixed-point numbers with a specified precision and scale.
+- **Example**:
+  ```javascript
+  salary: {
+    type: DataTypes.DECIMAL(10, 2), // 10 digits in total, 2 after the decimal point
+    allowNull: false
+  }
+  ```
+
+### 8. **BOOLEAN**
+- **Description**: For true/false values.
+- **Example**:
+  ```javascript
+  isActive: {
+    type: DataTypes.BOOLEAN,
+    defaultValue: true
+  }
+  ```
+
+### 9. **DATE**
+- **Description**: For date and time values.
+- **Example**:
+  ```javascript
+  birthdate: {
+    type: DataTypes.DATE,
+    allowNull: false
+  }
+  ```
+
+### 10. **DATEONLY**
+- **Description**: For date values without time.
+- **Example**:
+  ```javascript
+  birthdate: {
+    type: DataTypes.DATEONLY,
+    allowNull: false
+  }
+  ```
+
+### 11. **TIME**
+- **Description**: For time values without date.
+- **Example**:
+  ```javascript
+  appointmentTime: {
+    type: DataTypes.TIME,
+    allowNull: false
+  }
+  ```
+
+### 12. **ARRAY**
+- **Description**: For arrays of a specific type (PostgreSQL-specific).
+- **Example**:
+  ```javascript
+  tags: {
+    type: DataTypes.ARRAY(DataTypes.STRING),
+    allowNull: true
+  }
+  ```
+
+### 13. **JSON**
+- **Description**: For storing JSON objects.
+- **Example**:
+  ```javascript
+  settings: {
+    type: DataTypes.JSON,
+    allowNull: true
+  }
+  ```
+
+### 14. **UUID**
+- **Description**: For UUIDs (Universally Unique Identifiers).
+- **Example**:
+  ```javascript
+  id: {
+    type: DataTypes.UUID,
+    defaultValue: DataTypes.UUIDV4,
+    primaryKey: true
+  }
+  ```
+
+### 15. **BLOB**
+- **Description**: For binary large objects, such as files or images.
+- **Example**:
+  ```javascript
+  image: {
+    type: DataTypes.BLOB,
+    allowNull: true
+  }
+  ```
+
+### 16. **ENUM**
+- **Description**: For a set of predefined values.
+- **Example**:
+  ```javascript
+  status: {
+    type: DataTypes.ENUM('active', 'inactive', 'pending'),
+    allowNull: false
+  }
+  ```
+
+### 17. **GEOMETRY**
+- **Description**: For geometric data types (PostgreSQL-specific).
+- **Example**:
+  ```javascript
+  location: {
+    type: DataTypes.GEOMETRY('POINT'),
+    allowNull: true
+  }
+  ```
+
+### Example Model Using Various Data Types
+
+Here’s an example model incorporating several of these data types:
+
+```javascript
+module.exports = (sequelize, DataTypes) => {
+  const Example = sequelize.define('Example', {
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    description: {
+      type: DataTypes.TEXT,
+      allowNull: true
+    },
+    age: {
+      type: DataTypes.INTEGER,
+      validate: {
+        isInt: true,
+        min: 1
+      }
+    },
+    price: {
+      type: DataTypes.FLOAT,
+      allowNull: false
+    },
+    salary: {
+      type: DataTypes.DECIMAL(10, 2),
+      allowNull: false
+    },
+    isActive: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: true
+    },
+    birthdate: {
+      type: DataTypes.DATEONLY,
+      allowNull: false
+    },
+    tags: {
+      type: DataTypes.ARRAY(DataTypes.STRING),
+      allowNull: true
+    },
+    settings: {
+      type: DataTypes.JSON,
+      allowNull: true
+    },
+    uuid: {
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4,
+      primaryKey: true
+    },
+    image: {
+      type: DataTypes.BLOB,
+      allowNull: true
+    },
+    status: {
+      type: DataTypes.ENUM('active', 'inactive', 'pending'),
+      allowNull: false
+    }
+  });
+
+  return Example;
+};
+```
+
+### Summary
+
+- **Sequelize Data Types**: Use the appropriate data type for each attribute based on the kind of data you are storing.
+- **Validation and Constraints**: Combine data types with validation options to enforce data integrity.
+- **Compatibility**: Be aware of database-specific data types and features (e.g., `ARRAY`, `GEOMETRY`).
+
+This list should cover most of your needs for defining model attributes in Sequelize.
