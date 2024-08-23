@@ -4,20 +4,25 @@ const { Teacher, Student, Class,Profile, sequelize } = require('./models');
 const authRoutes = require('./routes/auth');
 const authenticateJWT = require('./middleware/authMiddleware');
 const helmet = require('helmet');
-const cors = require('cors');
 const compression = require('compression');
 const limiter = require('./utills/ratelimiter');
 const logger = require('./utills/logger');
+const cors = require('cors');
+
+
 
 const app = express();
 
 app.use(express.json());
 app.use(helmet());
 app.use(limiter);
-app.use(cors());
 app.use(compression());
 app.use(express.urlencoded({ extended: true })); // To parse URL-encoded bodies
-
+app.use(cors({
+  origin: '*', // Restrict allowed origins
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
 
 // app.use('/api', routes); // Prefix routes with /api
 app.use('/auth', authRoutes); // Authentication routes
