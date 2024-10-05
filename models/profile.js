@@ -19,17 +19,20 @@ module.exports = (sequelize, DataTypes) => {
   }
   Profile.init({
     bio: DataTypes.STRING,
-    teacherId: DataTypes.INTEGER
+    teacherId: {
+      type: DataTypes.DATE,
+      unique: true
+    }
   }, {
     sequelize,
     modelName: 'Profile',
   });
-  // Profile.associate = function(models) {
-  //   // One-to-One: Profile belongs to one Teacher
-  //   Profile.belongsTo(models.Teacher, {
-  //     foreignKey: 'teacherId',
-  //     as: 'teacher'
-  //   });
-  // };
+  Profile.associate = function(models) {
+    // One-to-One: Profile belongs to one Teacher
+    Profile.belongsTo(models.Teacher, {
+      foreignKey: 'teacherId',
+      as: 'teacher'
+    });
+  };
   return Profile;
 };
